@@ -1,7 +1,7 @@
-import { useParams } from "react-router-dom"
 import { Card, CardContent, CardMedia, Chip, Typography } from "@mui/material"
 import { useEffect, useState } from "react"
-import { fetchProduct } from "../../api/get-products"
+import { useParams } from "react-router-dom"
+import { fetchProduct } from "../../api/products"
 import { Product as ProductType } from "../../types/product"
 
 export const Product = () => {

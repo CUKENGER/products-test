@@ -63,7 +63,7 @@ export const Header = () => {
         </div>
       </Toolbar>
       {isShowResults && searchResults.length > 0 && (
-        <Paper ref={resultsRef} className="absolute w-[50%] mt-2 left-1/2 transform -translate-x-1/2 top-14 z-10">
+        <Paper ref={resultsRef} className="absolute w-full md:w-[50%] mt-2 left-1/2 transform -translate-x-1/2 top-12 md:top-14 z-10">
           <SearchResults results={searchResults} onClose={() => setIsShowResults(false)} />
         </Paper>
       )}
