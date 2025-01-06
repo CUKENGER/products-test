@@ -46,18 +46,28 @@ export const ProductItem = ({ product }: ProductItemProps) => {
     removeProduct(product.id);
   };
 
+  const handleNavigate = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.preventDefault()
+    navigate(`/products/${product.id}`);
+  }
+
   const isLiked = likedProducts.some((p) => p.id === product.id);
 
   return (
     <Card className="flex flex-col h-full">
       <Card
         className="max-w-[345px] h-full flex flex-col cursor-pointer hover:bg-gray-50"
-        onClick={(e: React.MouseEvent<HTMLDivElement>) => {
-          e.preventDefault();
-          navigate(`/products/${product.id}`);
-        }}
+        onClick={handleNavigate}
       >
-        <CardHeader title={product.title} className="flex items-center h-16" />
+        <CardHeader
+          title={product.title}
+          className="flex items-center h-24"
+          sx={{
+            '& .MuiCardHeader-title': {
+              fontSize: '20px',
+            },
+          }}
+        />
         <CardMedia image={product.images[0]} className="object-cover w-full h-64" />
         <ProductContent
           description={product.description}

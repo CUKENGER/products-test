@@ -19,7 +19,12 @@ const ProductContent: React.FC<ProductContentProps> = ({
   handleExpandClick,
 }) => {
   return (
-    <CardContent className="flex flex-col justify-between flex-grow">
+    <CardContent 
+      className="flex flex-col justify-between flex-grow" 
+      sx={{
+        paddingBottom: 0
+      }}
+    >
       <Typography
         variant="body2"
         className={`text-ellipsis overflow-hidden text-gray-600 ${expanded ? '' : 'line-clamp-3'}`}
