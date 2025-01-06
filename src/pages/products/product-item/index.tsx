@@ -1,14 +1,14 @@
 import DeleteIcon from "@mui/icons-material/Delete";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { CardHeader, CardMedia } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import IconButton from "@mui/material/IconButton";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ProductContent from "./product-item-content.tsx";
-import { useProductStore } from "../../store/product-store";
-import { Product } from "../../types/product";
-import { CardHeader, CardMedia } from "@mui/material";
+import { useProductStore } from "../../../store/product-store.ts";
+import { Product } from "../../../types/product.ts";
+import ProductContent from "../product-item-content/index.tsx";
 
 interface ProductItemProps {
   product: Product;

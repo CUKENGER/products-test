@@ -2,8 +2,8 @@ import { SubmitHandler, useForm } from "react-hook-form"
 import { useProductStore } from "../../store/product-store"
 import { Button, Container, TextField, Typography } from "@mui/material";
 import { useState } from "react";
-import { ImageInput } from "../../components/image-input";
 import { useNavigate } from "react-router-dom";
+import { ImageInput } from "./image-input";
 
 export interface IFormInput {
   title: string;

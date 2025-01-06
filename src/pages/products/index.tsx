@@ -2,11 +2,11 @@ import { Button, ButtonGroup, Container, Grid2, Typography } from "@mui/material
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchProducts } from "../../api/products";
-import { ProductItem } from "../../components/product-item/index";
+import { filters } from "../../consts/filters";
 import { useProductStore } from "../../store/product-store";
 import { filterProducts } from "../../utils/filterProducts";
-import ProductItemSkeleton from "../../components/product-item/product-item-skeleton";
-import { filters } from "../../consts/filters";
+import { ProductItem } from "./product-item/index";
+import ProductItemSkeleton from "./product-item-skeleton";
 
 export const Products = () => {
 
