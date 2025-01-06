@@ -11,7 +11,7 @@ export const SearchResults = ({results, onClose}: SearchResultsProps) => {
 
   const navigate = useNavigate()
 
-  const handleClick = (productId: number) => {
+  const handleClick = (productId: number | string) => {
     navigate(`products/${productId}`)
     onClose()
   }

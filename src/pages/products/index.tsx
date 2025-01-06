@@ -6,7 +6,7 @@ import { filters } from "../../consts/filters";
 import { useProductStore } from "../../store/product-store";
 import { filterProducts } from "../../utils/filterProducts";
 import { ProductItem } from "./product-item/index";
-import ProductItemSkeleton from "./product-item-skeleton";
+import { ProductItemSkeleton } from "./product-item-skeleton";
 
 export const Products = () => {
 

@@ -4,16 +4,7 @@ import { Button, Container, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ImageInput } from "./image-input";
-
-export interface IFormInput {
-  title: string;
-  description: string;
-  price: number;
-  brand: string;
-  category: string;
-  rating: number;
-  images: FileList;
-}
+import { CreateProductDto } from "../../types/product";
 
 export const CreateProduct = () => {
 
@@ -24,7 +15,7 @@ export const CreateProduct = () => {
     formState: {
       errors
     }
-  } = useForm<IFormInput>()
+  } = useForm<CreateProductDto>()
 
   const navigate = useNavigate()
 
@@ -38,7 +29,7 @@ export const CreateProduct = () => {
     }
   }
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
+  const onSubmit: SubmitHandler<CreateProductDto> = (data) => {
     const newProduct = {
       id: crypto.randomUUID(),
       ...data,

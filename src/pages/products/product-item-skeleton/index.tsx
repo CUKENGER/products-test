@@ -2,7 +2,7 @@ import { Card, CardHeader, CardActions, IconButton, Skeleton } from "@mui/materi
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-const ProductItemSkeleton = () => {
+export const ProductItemSkeleton = () => {
   return (
     <Card className="flex flex-col h-full max-w-[345px]">
       <Card className="flex flex-col h-full gap-1 cursor-pointer hover:bg-gray-50">
@@ -30,4 +30,3 @@ const ProductItemSkeleton = () => {
   );
 };
 
-export default ProductItemSkeleton;

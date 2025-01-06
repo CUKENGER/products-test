@@ -1,11 +1,11 @@
 import { Button, Typography } from "@mui/material"
 import { HTMLAttributes } from "react"
 import { FieldErrors, UseFormRegister } from "react-hook-form";
-import { IFormInput } from "../../pages/create-product";
+import { CreateProductDto } from "../../../types/product";
 
 interface ImageInputProps extends HTMLAttributes<HTMLInputElement> {
-  register: UseFormRegister<IFormInput>;
-  errors: FieldErrors<IFormInput>;
+  register: UseFormRegister<CreateProductDto>;
+  errors: FieldErrors<CreateProductDto>;
   imagePreviews: string[]
 }
 

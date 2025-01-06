@@ -10,3 +10,13 @@ export type Product = {
   price: number;
   rating: number;
 }
+
+export type CreateProductDto = {
+  title: string;
+  description: string;
+  price: number;
+  brand: string;
+  category: string;
+  rating: number;
+  images: FileList;
+}
