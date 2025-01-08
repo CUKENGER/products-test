@@ -1,6 +1,13 @@
-import { Card, CardContent, CardMedia, Chip, Typography } from '@mui/material'
+import {
+  Button,
+  Card,
+  CardContent,
+  CardMedia,
+  Chip,
+  Typography,
+} from '@mui/material'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { fetchProduct } from '../../api/products'
 import { Product as ProductType } from '../../types/product'
 
@@ -47,6 +54,11 @@ export const Product = () => {
           className="mt-2 w-min"
           label={`Rating: ${product.rating.toFixed(1)}`}
         />
+        <Link to={'edit'}>
+          <Button variant="contained" color="primary" className="mt-4">
+            Изменить
+          </Button>
+        </Link>
       </CardContent>
     </Card>
   )
