@@ -2,9 +2,9 @@ import { Button, Container, TextField, Typography } from '@mui/material'
 import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
+import { ImageInput } from '../../components/image-input'
 import { useProductStore } from '../../store/product-store'
 import { CreateProductDto } from '../../types/product'
-import { ImageInput } from './image-input'
 
 export const CreateProduct = () => {
   const { addProduct } = useProductStore()
@@ -65,7 +65,8 @@ export const CreateProduct = () => {
           label="Description"
           {...register('description', {
             required: 'Description is required',
-            validate: (value) => value.trim() !== '' || 'Title is required',
+            validate: (value) =>
+              value.trim() !== '' || 'Description is required',
           })}
           error={!!errors.description}
           helperText={errors.description?.message}

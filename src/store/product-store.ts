@@ -10,6 +10,7 @@ interface ProductState {
   removeProduct: (productId: number | string) => void
   addProduct: (product: Product) => void
   setIsProductsLoaded: (loaded: boolean) => void
+  setEditProduct: (id: number | string, updatedData: Partial<Product>) => void
 }
 
 export const useProductStore = create<ProductState>((set) => ({
@@ -30,4 +31,10 @@ export const useProductStore = create<ProductState>((set) => ({
   addProduct: (product) =>
     set((state) => ({ products: [...state.products, product] })),
   setIsProductsLoaded: (loaded) => set({ isProductsLoaded: loaded }),
+  setEditProduct: (id, updatedProduct) =>
+    set((state) => ({
+      products: state.products.map((product) =>
+        product.id === id ? { ...product, ...updatedProduct } : product
+      ),
+    })),
 }))

@@ -1,29 +1,36 @@
 import { Button, Typography } from '@mui/material'
 import { HTMLAttributes } from 'react'
-import { FieldErrors, UseFormRegister } from 'react-hook-form'
-import { CreateProductDto } from '../../../types/product'
+import {
+  FieldErrors,
+  FieldValues,
+  Path,
+  UseFormRegister,
+} from 'react-hook-form'
 
-interface ImageInputProps extends HTMLAttributes<HTMLInputElement> {
-  register: UseFormRegister<CreateProductDto>
-  errors: FieldErrors<CreateProductDto>
+interface ImageInputProps<T extends FieldValues>
+  extends HTMLAttributes<HTMLInputElement> {
+  register: UseFormRegister<T>
+  errors: FieldErrors<T>
   imagePreviews: string[]
+  required?: boolean
 }
 
-export const ImageInput = ({
+export const ImageInput = <T extends FieldValues>({
   register,
   errors,
   imagePreviews,
   onChange,
+  required = true,
   ...props
-}: ImageInputProps) => {
+}: ImageInputProps<T>) => {
   return (
     <>
       <input
         type="file"
         multiple
         accept="image/*"
-        {...register('images', {
-          required: 'Images are required',
+        {...register('images' as Path<T>, {
+          required: required,
           onChange: onChange,
         })}
         className="hidden"
@@ -35,7 +42,7 @@ export const ImageInput = ({
           Upload Images
         </Button>
       </label>
-      {errors.images && (
+      {errors.images && typeof errors.images.message === 'string' && (
         <Typography color="error">{errors.images.message}</Typography>
       )}
       {imagePreviews.length > 0 && (
