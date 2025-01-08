@@ -1,14 +1,14 @@
-import DeleteIcon from "@mui/icons-material/Delete";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import { CardHeader, CardMedia } from "@mui/material";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import IconButton from "@mui/material/IconButton";
-import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useProductStore } from "../../../store/product-store.ts";
-import { Product } from "../../../types/product.ts";
-import ProductContent from "../product-item-content/index.tsx";
+import DeleteIcon from '@mui/icons-material/Delete';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import { CardHeader, CardMedia } from '@mui/material';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import IconButton from '@mui/material/IconButton';
+import { useNavigate } from 'react-router-dom';
+import { useProductStore } from '../../../store/product-store.ts';
+import { Product } from '../../../types/product.ts';
+import ProductContent from '../product-item-content/index.tsx';
+import { useExpanded } from '../hooks/useExpanded.ts';
 
 interface ProductItemProps {
   product: Product;
@@ -18,22 +18,12 @@ export const ProductItem = ({ product }: ProductItemProps) => {
   const navigate = useNavigate();
 
   const { setLikedProducts, removeProduct, likedProducts } = useProductStore();
-  const [expanded, setExpanded] = useState(false);
-  const [showMoreButton, setShowMoreButton] = useState(false);
-  const descriptionRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (descriptionRef.current) {
-      const isOverflowing =
-        descriptionRef.current.scrollHeight >
-        descriptionRef.current.clientHeight;
-      setShowMoreButton(isOverflowing);
-    }
-  }, [product.description]);
+  const {isExpanded, setIsExpanded,showMoreButton, textRef} = useExpanded(product.description)
 
   const handleExpandClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    setExpanded(!expanded);
+    setIsExpanded(!isExpanded);
   };
 
   const handleLikeClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -47,9 +37,9 @@ export const ProductItem = ({ product }: ProductItemProps) => {
   };
 
   const handleNavigate = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.preventDefault()
+    e.preventDefault();
     navigate(`/products/${product.id}`);
-  }
+  };
 
   const isLiked = likedProducts.some((p) => p.id === product.id);
 
@@ -68,17 +58,20 @@ export const ProductItem = ({ product }: ProductItemProps) => {
             },
           }}
         />
-        <CardMedia image={product.images[0]} className="object-cover w-full h-64" />
+        <CardMedia
+          image={product.images[0]}
+          className="object-cover w-full h-64"
+        />
         <ProductContent
           description={product.description}
-          expanded={expanded}
-          descriptionRef={descriptionRef}
+          expanded={isExpanded}
+          descriptionRef={textRef}
           showMoreButton={showMoreButton}
           handleExpandClick={handleExpandClick}
         />
         <CardActions disableSpacing>
           <IconButton aria-label="add to favorites" onClick={handleLikeClick}>
-            <FavoriteIcon color={isLiked ? "error" : "inherit"} />
+            <FavoriteIcon color={isLiked ? 'error' : 'inherit'} />
           </IconButton>
           <IconButton aria-label="delete" onClick={handleDeleteClick}>
             <DeleteIcon />
