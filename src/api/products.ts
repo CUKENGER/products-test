@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { Product } from '../types/product';
 
-export const fetchProducts = async (): Promise<Product[]> => {
+export const fetchProducts = async (limit: number, skip: number): Promise<Product[]> => {
   try {
-    const response = await axios.get('https://dummyjson.com/products');
+    const response = await axios.get(`https://dummyjson.com/products?limit=${limit}&skip=${skip}`);
     return response.data.products;
   } catch (e) {
     console.error(`error fetch products: ${e}`);

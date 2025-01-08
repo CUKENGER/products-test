@@ -3,9 +3,10 @@ import {
   ButtonGroup,
   Container,
   Grid2,
+  Pagination,
   Typography,
 } from '@mui/material';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchProducts } from '../../api/products';
 import { filters } from '../../consts/filters';
@@ -24,10 +25,18 @@ export const Products = () => {
     setIsProductsLoaded,
   } = useProductStore();
   const [filter, setFilter] = useState('all');
+  const [page, setPage] = useState(1)
+  const limit = 10
+  const skip = (page - 1) * limit
 
-  const { isLoading } = useGetProducts(fetchProducts, setProducts, setIsProductsLoaded, isProductsLoaded)
+  const { isLoading } = useGetProducts(fetchProducts, setProducts, setIsProductsLoaded, isProductsLoaded, limit, skip)
 
   const filteredProducts = filterProducts(products, filter, likedProducts);
+
+  const handleChangePage = (e: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value)
+    setIsProductsLoaded(false)
+  }
 
   return (
     <Container sx={{ mt: 2 }}>
@@ -72,6 +81,12 @@ export const Products = () => {
           ))}
         </Grid2>
       )}
+      <Pagination
+        count={10}
+        page={page}
+        onChange={handleChangePage}
+        className='flex justify-center mt-4 mb-4'
+      />
     </Container>
   );
 };

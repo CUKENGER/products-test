@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react"
 
 export const useGetProducts = <T,>(
-  getProducts: () => Promise<T[]>,
+  getProducts: (limit: number, skip: number) => Promise<T[]>,
   setProducts: (data: T[]) => void,
   setIsProductsLoaded: (isLoaded: boolean) => void,
   isProductsLoaded: boolean,
+  limit: number,
+  skip: number
 ) => {
   const [isLoading, setIsLoading] = useState(true)
 
@@ -15,7 +17,7 @@ export const useGetProducts = <T,>(
         return
       }
       try {
-        const newData = await getProducts()
+        const newData = await getProducts(limit, skip)
         setProducts(newData)
         setIsProductsLoaded(true)
       } catch (e) {
@@ -26,7 +28,7 @@ export const useGetProducts = <T,>(
     }
 
     get()
-  }, [getProducts, isProductsLoaded, setProducts, setIsProductsLoaded])
+  }, [getProducts, isProductsLoaded, setProducts, setIsProductsLoaded, limit, skip])
 
   return {
     isLoading
