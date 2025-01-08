@@ -6,21 +6,29 @@ import { fetchProduct } from '../../api/products'
 import { ImageInput } from '../../components/image-input'
 import { useProductStore } from '../../store/product-store'
 import { EditProductDto, Product as ProductType } from '../../types/product'
+import { EditProductSkeleton } from './edit-product-skeleton'
 
 export const EditProduct = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   const [oldProduct, setOldProduct] = useState<ProductType>()
   const [imagePreviews, setImagePreviews] = useState<string[]>([])
+  const [isLoading, setIsLoading] = useState(true)
   const { setEditProduct } = useProductStore()
 
   useEffect(() => {
     const getProduct = async (id: number) => {
-      const data = await fetchProduct(id)
-      setOldProduct(data)
-      setImagePreviews(data.images)
+      try {
+        const data = await fetchProduct(id)
+        setOldProduct(data)
+        setImagePreviews(data.images)
+      } catch (e) {
+        console.error('Error get product:', e)
+      } finally {
+        setIsLoading(false)
+      }
     }
-
+    
     getProduct(Number(id))
   }, [id])
 
@@ -60,6 +68,10 @@ export const EditProduct = () => {
     }
     setEditProduct(Number(id), updatedProduct)
     navigate(`/`)
+  }
+
+  if (isLoading) {
+    return <EditProductSkeleton/>
   }
 
   if (!oldProduct) {
