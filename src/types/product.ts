@@ -1,20 +1,21 @@
-export type Product = {
-  id: number | string
+export type ProductBase = {
   title: string
   description: string
-  images: string[]
   brand: string
   category: string
   price: number
   rating: number
 }
 
-export type CreateProductDto = {
-  title: string
-  description: string
-  price: number
-  brand: string
-  category: string
-  rating: number
+export type Product = ProductBase & {
+  id: number | string
+  images: string[]
+}
+
+export type CreateProductDto = ProductBase & {
   images: FileList
+}
+
+export type EditProductDto = ProductBase & {
+  images: FileList | string[]
 }
