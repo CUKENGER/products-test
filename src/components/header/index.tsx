@@ -1,43 +1,30 @@
-import { AppBar, Button, Paper, TextField, Toolbar } from "@mui/material"
-import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react"
-import { useDebounce } from "../../hooks/useDebounce"
-import { useProductStore } from "../../store/product-store"
-import { SearchResults } from "../search-results"
-import { Link } from "react-router-dom"
+import { AppBar, Button, Paper, TextField, Toolbar } from '@mui/material';
+import { ChangeEvent, FormEvent, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useDebounce } from '../../hooks/useDebounce';
+import { useProductStore } from '../../store/product-store';
+import { SearchResults } from '../search-results';
+import { useShowResults } from './hooks/useShowResults';
 
 export const Header = () => {
-  const { products } = useProductStore()
-  const [searchQuery, setSearchQuery] = useState('')
-  const [isShowResults, setIsShowResults] = useState(false)
-  const debouncedSearchQuery = useDebounce(searchQuery, 500)
-  const resultsRef = useRef<HTMLDivElement>(null)
+  const { products } = useProductStore();
+  const [searchQuery, setSearchQuery] = useState('');
+  const debouncedSearchQuery = useDebounce(searchQuery, 500);
+
+  const {setIsShowResults, resultsRef, isShowResults} = useShowResults()
 
   const handleSearch = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-  }
+    e.preventDefault();
+  };
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value)
-    setIsShowResults(e.target.value !== '')
-  }
-
-  const handleClickOutside = (e: MouseEvent) => {
-    if (resultsRef.current && !resultsRef.current.contains(e.target as Node)) {
-      setIsShowResults(false)
-    }
-  }
-
-  useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside)
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [])
+    setSearchQuery(e.target.value);
+    setIsShowResults(e.target.value !== '');
+  };
 
   const searchResults = products.filter((product) =>
     product.title.toLowerCase().includes(debouncedSearchQuery.toLowerCase())
-  )
+  );
 
   return (
     <AppBar position="static" color="default">
@@ -63,10 +50,16 @@ export const Header = () => {
         </div>
       </Toolbar>
       {isShowResults && searchResults.length > 0 && (
-        <Paper ref={resultsRef} className="absolute w-full md:w-[50%] mt-2 left-1/2 transform -translate-x-1/2 top-12 md:top-14 z-10">
-          <SearchResults results={searchResults} onClose={() => setIsShowResults(false)} />
+        <Paper
+          ref={resultsRef}
+          className="absolute w-full md:w-[50%] mt-2 left-1/2 transform -translate-x-1/2 top-12 md:top-14 z-10"
+        >
+          <SearchResults
+            results={searchResults}
+            onClose={() => setIsShowResults(false)}
+          />
         </Paper>
       )}
     </AppBar>
-  )
-}
+  );
+};
