@@ -10,23 +10,36 @@ import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { fetchProduct } from '../../api/products'
 import { Product as ProductType } from '../../types/product'
+import { ProductSkeleton } from './product-skeleton'
 
 export const Product = () => {
   const { id } = useParams()
   const [product, setProduct] = useState<ProductType>()
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const getProduct = async (id: number) => {
-      const data = await fetchProduct(id)
-      setProduct(data)
+      try {
+        const data = await fetchProduct(id)
+        setProduct(data)
+      } catch (e) {
+        console.error('Failed get product:', e)
+      } finally {
+        setIsLoading(false)
+      }
     }
 
     getProduct(Number(id))
   }, [id])
+  
+  if(isLoading) {
+    return <ProductSkeleton/>
+  }
 
   if (!product) {
     return <div>Product not found</div>
   }
+
 
   return (
     <Card className="flex flex-col w-full max-w-4xl p-4 mx-auto mt-4 md:flex-row">
