@@ -1,5 +1,3 @@
-
-
 export type Product = {
   id: number | string;
   title: string;
@@ -9,7 +7,7 @@ export type Product = {
   category: string;
   price: number;
   rating: number;
-}
+};
 
 export type CreateProductDto = {
   title: string;
@@ -19,4 +17,4 @@ export type CreateProductDto = {
   category: string;
   rating: number;
   images: FileList;
-}
+};

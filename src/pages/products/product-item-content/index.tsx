@@ -1,7 +1,7 @@
-import Typography from "@mui/material/Typography";
-import React from "react";
-import Button from "@mui/material/Button";
-import { CardContent } from "@mui/material";
+import Typography from '@mui/material/Typography';
+import React from 'react';
+import Button from '@mui/material/Button';
+import { CardContent } from '@mui/material';
 
 interface ProductContentProps {
   description: string;
@@ -19,18 +19,18 @@ const ProductContent: React.FC<ProductContentProps> = ({
   handleExpandClick,
 }) => {
   return (
-    <CardContent 
-      className="flex flex-col justify-between flex-grow" 
+    <CardContent
+      className="flex flex-col justify-between flex-grow"
       sx={{
-        paddingBottom: 0
+        paddingBottom: 0,
       }}
     >
       <Typography
         variant="body2"
         className={`text-ellipsis overflow-hidden text-gray-600 ${expanded ? '' : 'line-clamp-3'}`}
         sx={{
-          display: "-webkit-box",
-          WebkitBoxOrient: "vertical",
+          display: '-webkit-box',
+          WebkitBoxOrient: 'vertical',
         }}
         ref={descriptionRef}
       >
@@ -40,14 +40,14 @@ const ProductContent: React.FC<ProductContentProps> = ({
         <Button
           sx={{
             marginLeft: 'auto',
-            fontSize: "12px"
+            fontSize: '12px',
           }}
           className="transition-transform duration-150"
           onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"
         >
-          {expanded ? "Скрыть" : "Показать больше"}
+          {expanded ? 'Скрыть' : 'Показать больше'}
         </Button>
       )}
     </CardContent>

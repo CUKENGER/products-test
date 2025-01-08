@@ -1,38 +1,31 @@
-import { Button, ButtonGroup, Container, Grid2, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { fetchProducts } from "../../api/products";
-import { filters } from "../../consts/filters";
-import { useProductStore } from "../../store/product-store";
-import { filterProducts } from "../../utils/filterProducts";
-import { ProductItem } from "./product-item/index";
-import { ProductItemSkeleton } from "./product-item-skeleton";
+import {
+  Button,
+  ButtonGroup,
+  Container,
+  Grid2,
+  Typography,
+} from '@mui/material';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { fetchProducts } from '../../api/products';
+import { filters } from '../../consts/filters';
+import { useProductStore } from '../../store/product-store';
+import { filterProducts } from '../../utils/filterProducts';
+import { useGetProducts } from './hooks/useGetProducts';
+import { ProductItemSkeleton } from './product-item-skeleton';
+import { ProductItem } from './product-item/index';
 
 export const Products = () => {
+  const {
+    setProducts,
+    products,
+    likedProducts,
+    isProductsLoaded,
+    setIsProductsLoaded,
+  } = useProductStore();
+  const [filter, setFilter] = useState('all');
 
-  const { setProducts, products, likedProducts, isProductsLoaded, setIsProductsLoaded } = useProductStore()
-  const [filter, setFilter] = useState("all");
-  const [isLoading, setIsLoading] = useState(true)
-
-  useEffect(() => {
-    const getProducts = async () => {
-      if (isProductsLoaded) {
-        setIsLoading(false)
-        return
-      }
-      try {
-        const data = await fetchProducts();
-        setProducts(data ?? []);
-        setIsProductsLoaded(true)
-      } catch (error) {
-        console.error('Failed to fetch products:', error);
-      } finally {
-        setIsLoading(false)
-      }
-    };
-
-    getProducts();
-  }, [isProductsLoaded, setIsProductsLoaded, setProducts]);
+  const { isLoading } = useGetProducts(fetchProducts, setProducts, setIsProductsLoaded, isProductsLoaded)
 
   const filteredProducts = filterProducts(products, filter, likedProducts);
 
@@ -44,16 +37,14 @@ export const Products = () => {
             <Button
               key={value}
               onClick={() => setFilter(value)}
-              variant={filter === value ? "contained" : "outlined"}
+              variant={filter === value ? 'contained' : 'outlined'}
             >
               {label}
             </Button>
           ))}
         </ButtonGroup>
         <Link to={'products/create'}>
-          <Button variant="contained">
-            Add
-          </Button>
+          <Button variant="contained">Add</Button>
         </Link>
       </div>
       {isLoading ? (
@@ -64,8 +55,12 @@ export const Products = () => {
             </Grid2>
           ))}
         </Grid2>
-      ) : filter === "liked" && likedProducts.length === 0 ? (
-        <Typography variant="h6" component="div" sx={{ textAlign: 'center', mt: 2 }}>
+      ) : filter === 'liked' && likedProducts.length === 0 ? (
+        <Typography
+          variant="h6"
+          component="div"
+          sx={{ textAlign: 'center', mt: 2 }}
+        >
           Добавьте в избранное, чтобы увидеть здесь товары
         </Typography>
       ) : (
@@ -78,5 +73,5 @@ export const Products = () => {
         </Grid2>
       )}
     </Container>
-  )
-}
+  );
+};
