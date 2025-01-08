@@ -73,20 +73,22 @@ export const Products = () => {
           Добавьте в избранное, чтобы увидеть здесь товары
         </Typography>
       ) : (
-        <Grid2 container spacing={0.5}>
-          {filteredProducts.map((product) => (
-            <Grid2 size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={product.id}>
-              <ProductItem product={product} />
-            </Grid2>
-          ))}
-        </Grid2>
+        <>
+          <Grid2 container spacing={0.5}>
+            {filteredProducts.map((product) => (
+              <Grid2 size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={product.id}>
+                <ProductItem product={product} />
+              </Grid2>
+            ))}
+          </Grid2>
+          <Pagination
+            count={10}
+            page={page}
+            onChange={handleChangePage}
+            className='flex justify-center mt-4 mb-4'
+          />
+        </>
       )}
-      <Pagination
-        count={10}
-        page={page}
-        onChange={handleChangePage}
-        className='flex justify-center mt-4 mb-4'
-      />
     </Container>
   );
 };
