@@ -4,4 +4,4 @@ export const filters = [
   { label: 'Дешевле', value: 'cheap' },
   { label: 'Дороже', value: 'expensive' },
   { label: 'Избранные', value: 'liked' },
-];
+]

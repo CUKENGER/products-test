@@ -5,16 +5,16 @@ import {
   Grid2,
   Pagination,
   Typography,
-} from '@mui/material';
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { fetchProducts } from '../../api/products';
-import { filters } from '../../consts/filters';
-import { useProductStore } from '../../store/product-store';
-import { filterProducts } from '../../utils/filterProducts';
-import { useGetProducts } from './hooks/useGetProducts';
-import { ProductItemSkeleton } from './product-item-skeleton';
-import { ProductItem } from './product-item/index';
+} from '@mui/material'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { fetchProducts } from '../../api/products'
+import { filters } from '../../consts/filters'
+import { useProductStore } from '../../store/product-store'
+import { filterProducts } from '../../utils/filterProducts'
+import { useGetProducts } from './hooks/useGetProducts'
+import { ProductItemSkeleton } from './product-item-skeleton'
+import { ProductItem } from './product-item/index'
 
 export const Products = () => {
   const {
@@ -23,15 +23,22 @@ export const Products = () => {
     likedProducts,
     isProductsLoaded,
     setIsProductsLoaded,
-  } = useProductStore();
-  const [filter, setFilter] = useState('all');
+  } = useProductStore()
+  const [filter, setFilter] = useState('all')
   const [page, setPage] = useState(1)
   const limit = 10
   const skip = (page - 1) * limit
 
-  const { isLoading } = useGetProducts(fetchProducts, setProducts, setIsProductsLoaded, isProductsLoaded, limit, skip)
+  const { isLoading } = useGetProducts(
+    fetchProducts,
+    setProducts,
+    setIsProductsLoaded,
+    isProductsLoaded,
+    limit,
+    skip
+  )
 
-  const filteredProducts = filterProducts(products, filter, likedProducts);
+  const filteredProducts = filterProducts(products, filter, likedProducts)
 
   const handleChangePage = (e: React.ChangeEvent<unknown>, value: number) => {
     setPage(value)
@@ -85,10 +92,10 @@ export const Products = () => {
             count={10}
             page={page}
             onChange={handleChangePage}
-            className='flex justify-center mt-4 mb-4'
+            className="flex justify-center mt-4 mb-4"
           />
         </>
       )}
     </Container>
-  );
-};
+  )
+}

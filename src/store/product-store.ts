@@ -1,15 +1,15 @@
-import { create } from 'zustand';
-import { Product } from '../types/product';
+import { create } from 'zustand'
+import { Product } from '../types/product'
 
 interface ProductState {
-  products: Product[];
-  likedProducts: Product[];
-  isProductsLoaded: boolean;
-  setLikedProducts: (product: Product) => void;
-  setProducts: (products: Product[]) => void;
-  removeProduct: (productId: number | string) => void;
-  addProduct: (product: Product) => void;
-  setIsProductsLoaded: (loaded: boolean) => void;
+  products: Product[]
+  likedProducts: Product[]
+  isProductsLoaded: boolean
+  setLikedProducts: (product: Product) => void
+  setProducts: (products: Product[]) => void
+  removeProduct: (productId: number | string) => void
+  addProduct: (product: Product) => void
+  setIsProductsLoaded: (loaded: boolean) => void
 }
 
 export const useProductStore = create<ProductState>((set) => ({
@@ -30,4 +30,4 @@ export const useProductStore = create<ProductState>((set) => ({
   addProduct: (product) =>
     set((state) => ({ products: [...state.products, product] })),
   setIsProductsLoaded: (loaded) => set({ isProductsLoaded: loaded }),
-}));
+}))

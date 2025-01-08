@@ -1,47 +1,49 @@
-import DeleteIcon from '@mui/icons-material/Delete';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import { CardHeader, CardMedia } from '@mui/material';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import IconButton from '@mui/material/IconButton';
-import { useNavigate } from 'react-router-dom';
-import { useProductStore } from '../../../store/product-store.ts';
-import { Product } from '../../../types/product.ts';
-import ProductContent from '../product-item-content/index.tsx';
-import { useExpanded } from '../hooks/useExpanded.ts';
+import DeleteIcon from '@mui/icons-material/Delete'
+import FavoriteIcon from '@mui/icons-material/Favorite'
+import { CardHeader, CardMedia } from '@mui/material'
+import Card from '@mui/material/Card'
+import CardActions from '@mui/material/CardActions'
+import IconButton from '@mui/material/IconButton'
+import { useNavigate } from 'react-router-dom'
+import { useProductStore } from '../../../store/product-store.ts'
+import { Product } from '../../../types/product.ts'
+import ProductContent from '../product-item-content/index.tsx'
+import { useExpanded } from '../hooks/useExpanded.ts'
 
 interface ProductItemProps {
-  product: Product;
+  product: Product
 }
 
 export const ProductItem = ({ product }: ProductItemProps) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const { setLikedProducts, removeProduct, likedProducts } = useProductStore();
+  const { setLikedProducts, removeProduct, likedProducts } = useProductStore()
 
-  const {isExpanded, setIsExpanded,showMoreButton, textRef} = useExpanded(product.description)
+  const { isExpanded, setIsExpanded, showMoreButton, textRef } = useExpanded(
+    product.description
+  )
 
   const handleExpandClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    setIsExpanded(!isExpanded);
-  };
+    e.stopPropagation()
+    setIsExpanded(!isExpanded)
+  }
 
   const handleLikeClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    setLikedProducts(product);
-  };
+    e.stopPropagation()
+    setLikedProducts(product)
+  }
 
   const handleDeleteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    removeProduct(product.id);
-  };
+    e.stopPropagation()
+    removeProduct(product.id)
+  }
 
   const handleNavigate = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    navigate(`/products/${product.id}`);
-  };
+    e.preventDefault()
+    navigate(`/products/${product.id}`)
+  }
 
-  const isLiked = likedProducts.some((p) => p.id === product.id);
+  const isLiked = likedProducts.some((p) => p.id === product.id)
 
   return (
     <Card className="flex flex-col h-full">
@@ -79,5 +81,5 @@ export const ProductItem = ({ product }: ProductItemProps) => {
         </CardActions>
       </Card>
     </Card>
-  );
-};
+  )
+}

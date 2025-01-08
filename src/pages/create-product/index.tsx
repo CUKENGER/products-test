@@ -1,42 +1,42 @@
-import { Button, Container, TextField, Typography } from '@mui/material';
-import { useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import { useProductStore } from '../../store/product-store';
-import { CreateProductDto } from '../../types/product';
-import { ImageInput } from './image-input';
+import { Button, Container, TextField, Typography } from '@mui/material'
+import { useState } from 'react'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { useProductStore } from '../../store/product-store'
+import { CreateProductDto } from '../../types/product'
+import { ImageInput } from './image-input'
 
 export const CreateProduct = () => {
-  const { addProduct } = useProductStore();
+  const { addProduct } = useProductStore()
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<CreateProductDto>();
+  } = useForm<CreateProductDto>()
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const [imagePreviews, setImagePreviews] = useState<string[]>([]);
+  const [imagePreviews, setImagePreviews] = useState<string[]>([])
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
+    const files = e.target.files
     if (files) {
       const previews = Array.from(files).map((file) =>
         URL.createObjectURL(file)
-      );
-      setImagePreviews(previews);
+      )
+      setImagePreviews(previews)
     }
-  };
+  }
 
   const onSubmit: SubmitHandler<CreateProductDto> = (data) => {
     const newProduct = {
       id: crypto.randomUUID(),
       ...data,
       images: Array.from(data.images).map((file) => URL.createObjectURL(file)),
-    };
-    addProduct(newProduct);
-    navigate('/');
-  };
+    }
+    addProduct(newProduct)
+    navigate('/')
+  }
 
   return (
     <Container maxWidth="sm" className="pb-10 mt-12">
@@ -113,5 +113,5 @@ export const CreateProduct = () => {
         </Button>
       </form>
     </Container>
-  );
-};
+  )
+}

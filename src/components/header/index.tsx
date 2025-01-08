@@ -1,30 +1,30 @@
-import { AppBar, Button, Paper, TextField, Toolbar } from '@mui/material';
-import { ChangeEvent, FormEvent, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useDebounce } from '../../hooks/useDebounce';
-import { useProductStore } from '../../store/product-store';
-import { SearchResults } from '../search-results';
-import { useShowResults } from './hooks/useShowResults';
+import { AppBar, Button, Paper, TextField, Toolbar } from '@mui/material'
+import { ChangeEvent, FormEvent, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { useDebounce } from '../../hooks/useDebounce'
+import { useProductStore } from '../../store/product-store'
+import { SearchResults } from '../search-results'
+import { useShowResults } from './hooks/useShowResults'
 
 export const Header = () => {
-  const { products } = useProductStore();
-  const [searchQuery, setSearchQuery] = useState('');
-  const debouncedSearchQuery = useDebounce(searchQuery, 500);
+  const { products } = useProductStore()
+  const [searchQuery, setSearchQuery] = useState('')
+  const debouncedSearchQuery = useDebounce(searchQuery, 500)
 
-  const {setIsShowResults, resultsRef, isShowResults} = useShowResults()
+  const { setIsShowResults, resultsRef, isShowResults } = useShowResults()
 
   const handleSearch = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  };
+    e.preventDefault()
+  }
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);
-    setIsShowResults(e.target.value !== '');
-  };
+    setSearchQuery(e.target.value)
+    setIsShowResults(e.target.value !== '')
+  }
 
   const searchResults = products.filter((product) =>
     product.title.toLowerCase().includes(debouncedSearchQuery.toLowerCase())
-  );
+  )
 
   return (
     <AppBar position="static" color="default">
@@ -61,5 +61,5 @@ export const Header = () => {
         </Paper>
       )}
     </AppBar>
-  );
-};
+  )
+}

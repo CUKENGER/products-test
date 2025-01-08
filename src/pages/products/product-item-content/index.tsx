@@ -1,14 +1,14 @@
-import Typography from '@mui/material/Typography';
-import React from 'react';
-import Button from '@mui/material/Button';
-import { CardContent } from '@mui/material';
+import Typography from '@mui/material/Typography'
+import React from 'react'
+import Button from '@mui/material/Button'
+import { CardContent } from '@mui/material'
 
 interface ProductContentProps {
-  description: string;
-  expanded: boolean;
-  descriptionRef: React.RefObject<HTMLDivElement>;
-  showMoreButton: boolean;
-  handleExpandClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  description: string
+  expanded: boolean
+  descriptionRef: React.RefObject<HTMLDivElement>
+  showMoreButton: boolean
+  handleExpandClick: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 const ProductContent: React.FC<ProductContentProps> = ({
@@ -51,7 +51,7 @@ const ProductContent: React.FC<ProductContentProps> = ({
         </Button>
       )}
     </CardContent>
-  );
-};
+  )
+}
 
-export default ProductContent;
+export default ProductContent

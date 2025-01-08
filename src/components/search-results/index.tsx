@@ -4,22 +4,22 @@ import {
   ListItem,
   ListItemAvatar,
   ListItemText,
-} from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import { Product } from '../../types/product';
+} from '@mui/material'
+import { useNavigate } from 'react-router-dom'
+import { Product } from '../../types/product'
 
 interface SearchResultsProps {
-  results: Product[];
-  onClose: () => void;
+  results: Product[]
+  onClose: () => void
 }
 
 export const SearchResults = ({ results, onClose }: SearchResultsProps) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const handleClick = (productId: number | string) => {
-    navigate(`products/${productId}`);
-    onClose();
-  };
+    navigate(`products/${productId}`)
+    onClose()
+  }
 
   return (
     <List className="overflow-hidden overflow-y-scroll max-h-72">
@@ -36,5 +36,5 @@ export const SearchResults = ({ results, onClose }: SearchResultsProps) => {
         </ListItem>
       ))}
     </List>
-  );
-};
+  )
+}

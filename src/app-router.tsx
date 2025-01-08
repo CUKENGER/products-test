@@ -1,6 +1,6 @@
-import { Route, Routes } from 'react-router-dom';
-import { routes } from './routes';
-import { Header } from './components/header';
+import { Route, Routes } from 'react-router-dom'
+import { routes } from './routes'
+import { Header } from './components/header'
 
 function AppRouter() {
   return (
@@ -12,7 +12,7 @@ function AppRouter() {
         ))}
       </Routes>
     </>
-  );
+  )
 }
 
-export default AppRouter;
+export default AppRouter

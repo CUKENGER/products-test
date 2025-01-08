@@ -1,12 +1,12 @@
-import { Button, Typography } from '@mui/material';
-import { HTMLAttributes } from 'react';
-import { FieldErrors, UseFormRegister } from 'react-hook-form';
-import { CreateProductDto } from '../../../types/product';
+import { Button, Typography } from '@mui/material'
+import { HTMLAttributes } from 'react'
+import { FieldErrors, UseFormRegister } from 'react-hook-form'
+import { CreateProductDto } from '../../../types/product'
 
 interface ImageInputProps extends HTMLAttributes<HTMLInputElement> {
-  register: UseFormRegister<CreateProductDto>;
-  errors: FieldErrors<CreateProductDto>;
-  imagePreviews: string[];
+  register: UseFormRegister<CreateProductDto>
+  errors: FieldErrors<CreateProductDto>
+  imagePreviews: string[]
 }
 
 export const ImageInput = ({
@@ -55,5 +55,5 @@ export const ImageInput = ({
         </div>
       )}
     </>
-  );
-};
+  )
+}

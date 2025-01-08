@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from 'react'
 
-export const useGetProducts = <T,>(
+export const useGetProducts = <T>(
   getProducts: (limit: number, skip: number) => Promise<T[]>,
   setProducts: (data: T[]) => void,
   setIsProductsLoaded: (isLoaded: boolean) => void,
@@ -21,16 +21,23 @@ export const useGetProducts = <T,>(
         setProducts(newData)
         setIsProductsLoaded(true)
       } catch (e) {
-        console.error("Error get data:", e)
+        console.error('Error get data:', e)
       } finally {
         setIsLoading(false)
       }
     }
 
     get()
-  }, [getProducts, isProductsLoaded, setProducts, setIsProductsLoaded, limit, skip])
+  }, [
+    getProducts,
+    isProductsLoaded,
+    setProducts,
+    setIsProductsLoaded,
+    limit,
+    skip,
+  ])
 
   return {
-    isLoading
+    isLoading,
   }
-}  
+}

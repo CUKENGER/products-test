@@ -1,24 +1,24 @@
-import { Card, CardContent, CardMedia, Chip, Typography } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { fetchProduct } from '../../api/products';
-import { Product as ProductType } from '../../types/product';
+import { Card, CardContent, CardMedia, Chip, Typography } from '@mui/material'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { fetchProduct } from '../../api/products'
+import { Product as ProductType } from '../../types/product'
 
 export const Product = () => {
-  const { id } = useParams();
-  const [product, setProduct] = useState<ProductType>();
+  const { id } = useParams()
+  const [product, setProduct] = useState<ProductType>()
 
   useEffect(() => {
     const getProduct = async (id: number) => {
-      const data = await fetchProduct(id);
-      setProduct(data);
-    };
+      const data = await fetchProduct(id)
+      setProduct(data)
+    }
 
-    getProduct(Number(id));
-  }, [id]);
+    getProduct(Number(id))
+  }, [id])
 
   if (!product) {
-    return <div>Product not found</div>;
+    return <div>Product not found</div>
   }
 
   return (
@@ -49,5 +49,5 @@ export const Product = () => {
         />
       </CardContent>
     </Card>
-  );
-};
+  )
+}

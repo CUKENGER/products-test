@@ -4,9 +4,9 @@ import {
   CardActions,
   IconButton,
   Skeleton,
-} from '@mui/material';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import DeleteIcon from '@mui/icons-material/Delete';
+} from '@mui/material'
+import FavoriteIcon from '@mui/icons-material/Favorite'
+import DeleteIcon from '@mui/icons-material/Delete'
 
 export const ProductItemSkeleton = () => {
   return (
@@ -33,5 +33,5 @@ export const ProductItemSkeleton = () => {
         </CardActions>
       </Card>
     </Card>
-  );
-};
+  )
+}

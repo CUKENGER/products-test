@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState } from "react"
-
+import { useEffect, useRef, useState } from 'react'
 
 export const useExpanded = (text: string) => {
   const [isExpanded, setIsExpanded] = useState(false)
@@ -7,18 +6,17 @@ export const useExpanded = (text: string) => {
   const textRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if(textRef.current) {
-      const isOverflowing = 
-        textRef.current.scrollHeight > 
-        textRef.current.clientHeight
+    if (textRef.current) {
+      const isOverflowing =
+        textRef.current.scrollHeight > textRef.current.clientHeight
       setShowMoreButton(isOverflowing)
     }
   }, [text])
 
-  return{
+  return {
     isExpanded,
     setIsExpanded,
     textRef,
-    showMoreButton
+    showMoreButton,
   }
 }
