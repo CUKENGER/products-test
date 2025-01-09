@@ -22,19 +22,24 @@ export const SearchResults = ({ results, onClose }: SearchResultsProps) => {
   }
 
   return (
-    <List className="overflow-hidden overflow-y-scroll max-h-72">
-      {results.map((product: Product) => (
-        <ListItem
-          key={product.id}
-          onClick={() => handleClick(product.id)}
-          className="cursor-pointer hover:bg-gray-100"
-        >
-          <ListItemAvatar>
-            <Avatar src={product.images[0]} alt={product.title} />
-          </ListItemAvatar>
-          <ListItemText primary={product.title} />
-        </ListItem>
-      ))}
+    <List
+      className="overflow-hidden overflow-y-scroll max-h-72"
+      data-testid="search-results"
+    >
+      {results &&
+        results.length > 0 &&
+        results.map((product: Product) => (
+          <ListItem
+            key={product.id}
+            onClick={() => handleClick(product.id)}
+            className="cursor-pointer hover:bg-gray-100"
+          >
+            <ListItemAvatar>
+              <Avatar src={product.images[0]} alt={product.title} />
+            </ListItemAvatar>
+            <ListItemText primary={product.title} />
+          </ListItem>
+        ))}
     </List>
   )
 }
