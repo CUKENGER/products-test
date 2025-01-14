@@ -48,6 +48,7 @@ export const ProductItem = ({ product }: ProductItemProps) => {
   return (
     <Card className="flex flex-col h-full">
       <Card
+        data-testid="Card-ProductItem"
         className="max-w-[345px] h-full flex flex-col cursor-pointer hover:bg-gray-50"
         onClick={handleNavigate}
       >
@@ -72,7 +73,13 @@ export const ProductItem = ({ product }: ProductItemProps) => {
           handleExpandClick={handleExpandClick}
         />
         <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites" onClick={handleLikeClick}>
+          <IconButton
+            aria-label="add to favorites"
+            onClick={handleLikeClick}
+            data-testid={
+              isLiked ? 'FavoriteIcon-pressed' : 'FavoriteIcon-not-pressed'
+            }
+          >
             <FavoriteIcon color={isLiked ? 'error' : 'inherit'} />
           </IconButton>
           <IconButton aria-label="delete" onClick={handleDeleteClick}>
