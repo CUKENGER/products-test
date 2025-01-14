@@ -1,5 +1,5 @@
 # Тестовое задание на React с TypeScript
-[Посмотреть]([http://localhost:3000](https://cukenger.github.io/products-test/)).
+[Посмотреть](https://cukenger.github.io/products-test/))
 
 ## Описание
 
