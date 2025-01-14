@@ -6,7 +6,7 @@ import {
   Pagination,
   Typography,
 } from '@mui/material'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { fetchProducts } from '../../api/products'
 import { filters } from '../../consts/filters'
@@ -40,7 +40,7 @@ export const Products = () => {
 
   const filteredProducts = filterProducts(products, filter, likedProducts)
 
-  const handleChangePage = (e: React.ChangeEvent<unknown>, value: number) => {
+  const handleChangePage = (value: number) => {
     setPage(value)
     setIsProductsLoaded(false)
   }
@@ -91,7 +91,7 @@ export const Products = () => {
           <Pagination
             count={10}
             page={page}
-            onChange={handleChangePage}
+            onChange={(_, value) => handleChangePage(value)}
             className="flex justify-center mt-4 mb-4"
           />
         </>
