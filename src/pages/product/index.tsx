@@ -31,15 +31,14 @@ export const Product = () => {
 
     getProduct(Number(id))
   }, [id])
-  
-  if(isLoading) {
-    return <ProductSkeleton/>
+
+  if (isLoading) {
+    return <ProductSkeleton />
   }
 
   if (!product) {
     return <div>Product not found</div>
   }
-
 
   return (
     <Card className="flex flex-col w-full max-w-4xl p-4 mx-auto mt-4 md:flex-row">

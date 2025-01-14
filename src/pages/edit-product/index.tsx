@@ -28,7 +28,7 @@ export const EditProduct = () => {
         setIsLoading(false)
       }
     }
-    
+
     getProduct(Number(id))
   }, [id])
 
@@ -71,7 +71,7 @@ export const EditProduct = () => {
   }
 
   if (isLoading) {
-    return <EditProductSkeleton/>
+    return <EditProductSkeleton />
   }
 
   if (!oldProduct) {
