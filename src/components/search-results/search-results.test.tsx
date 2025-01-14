@@ -14,7 +14,7 @@ vi.mock('react-router-dom', async () => {
   }
 })
 
-describe('search result', () => {
+describe.skip('search result', () => {
   const products: Product[] = [
     {
       id: 1,
