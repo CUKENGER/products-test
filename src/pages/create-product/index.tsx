@@ -20,7 +20,8 @@ export const CreateProduct = () => {
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files
-    if (files) {
+    console.log('change image', files)
+    if (files && files.length > 0) {
       const previews = Array.from(files).map((file) =>
         URL.createObjectURL(file)
       )
@@ -29,18 +30,21 @@ export const CreateProduct = () => {
   }
 
   const onSubmit: SubmitHandler<CreateProductDto> = (data) => {
+    console.log('onSubmit 1')
     const newProduct = {
       id: crypto.randomUUID(),
       ...data,
       images: Array.from(data.images).map((file) => URL.createObjectURL(file)),
     }
+    console.log('onSubmit')
+    console.log('newProduct', newProduct)
     addProduct(newProduct)
     navigate('/')
   }
 
   return (
     <Container maxWidth="sm" className="pb-10 mt-12">
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h4" gutterBottom data-testid="typography">
         Create Product
       </Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -109,7 +113,12 @@ export const CreateProduct = () => {
           fullWidth
           margin="normal"
         />
-        <Button type="submit" variant="contained" color="primary">
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          data-testid="submit-btn"
+        >
           Create Product
         </Button>
       </form>
