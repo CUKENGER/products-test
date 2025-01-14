@@ -1,50 +1,65 @@
-# React + TypeScript + Vite
+# Тестовое задание на React с TypeScript
+[Посмотреть]([http://localhost:3000](https://cukenger.github.io/products-test/)).
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Описание
 
-Currently, two official plugins are available:
+Это тестовое задание выполнено с использованием следующих технологий:
+- **React** — JavaScript библиотека для создания пользовательских интерфейсов.
+- **TypeScript** — строго типизированный суперсет JavaScript.
+- **Axios** — библиотека для выполнения HTTP-запросов.
+- **Zustand** — легковесная библиотека для управления состоянием.
+- **MUI (Material-UI)** — набор компонентов UI для React.
+- **React Hook Form** — библиотека для управления формами в React.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Установка
 
-## Expanding the ESLint configuration
+1. Склонируйте репозиторий:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+   ```bash
+   git clone https://github.com/yourusername/your-repo.git
+   ```
 
-- Configure the top-level `parserOptions` property like this:
+2. Перейдите в директорию проекта:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+   ```bash
+   cd your-repo
+   ```
+
+3. Установите зависимости:
+
+   ```bash
+   npm install
+   # или
+   yarn install
+   ```
+
+4. Запустите проект:
+
+   ```bash
+   npm start
+   # или
+   yarn start
+   ```
+Проект будет доступен по адресу [http://localhost:3000](http://localhost:3000).
+
+## Тестирование
+
+Для тестирования используются инструменты Vitest и React Testing Library. Для запуска тестов выполните:
+
+```bash
+npm test
+# или
+yarn test
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Линтер и форматтер
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+Для поддержания чистого кода используется ESLint и Prettier. Проверка и форматирование кода могут быть выполнены командами:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+npm run lint
+npm run format
+# или
+yarn lint
+yarn format
 ```
