@@ -22,5 +22,6 @@ export const useShowResults = () => {
     setIsShowResults,
     resultsRef,
     isShowResults,
+    handleClickOutside,
   }
 }
