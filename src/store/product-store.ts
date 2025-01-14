@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { Product } from '../types/product'
 
-interface ProductState {
+export interface ProductState {
   products: Product[]
   likedProducts: Product[]
   isProductsLoaded: boolean
