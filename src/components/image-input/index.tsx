@@ -30,14 +30,15 @@ export const ImageInput = <T extends FieldValues>({
         multiple
         accept="image/*"
         {...register('images' as Path<T>, {
-          required: required,
+          required: required ? 'This field is required' : false,
           onChange: onChange,
         })}
         className="hidden"
         id="images-input"
+        data-testid="images-input"
         {...props}
       />
-      <label htmlFor="images-input">
+      <label htmlFor="images-input" data-testid="upload-btn">
         <Button variant="contained" color="primary" component="span">
           Upload Images
         </Button>
