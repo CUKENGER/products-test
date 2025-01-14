@@ -32,6 +32,7 @@ export const ProductItemSkeleton = () => {
           </IconButton>
         </CardActions>
       </Card>
+      <span className="hidden">loading</span>
     </Card>
   )
 }
